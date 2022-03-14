@@ -45,7 +45,7 @@ $MemberResults = foreach ($Group in $Groups) {
     $gMembers = Get-AzureADGroupMember -ObjectID $group.ObjectID
     if ($gMembers) {
         foreach ($gMember in $gMembers) {
-            [PSCustomObject]@{ #Export groups that do have owners to array
+            [PSCustomObject]@{ #Export groups that do have members to array
                 Group             = $Group.DisplayName
                 "Group Object ID" = $Group.ObjectID
                 Owner             = $gMember.DisplayName
@@ -55,7 +55,7 @@ $MemberResults = foreach ($Group in $Groups) {
         }
     }
     else {
-        [PSCustomObject]@{ #Export groups that do have owners to array
+        [PSCustomObject]@{ #Export groups that do have members to array
             Group             = $Group.DisplayName
             "Group Object ID" = $Group.ObjectID
             Owner             = "No members in AAD"
