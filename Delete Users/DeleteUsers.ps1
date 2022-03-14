@@ -8,13 +8,13 @@ if (!$Users) {
 
 foreach ($User in $Users) {
 	if ($user.delete) {
-		$DeleteUser = Get-AzureADUser -ObjectId $User.delete -ErrorAction SilentlyContinue
-		if ($Null -ne $DeleteUser) {
+		$DeleteUser = Get-MsolUser -UserPrincipalName $User.delete -ErrorAction SilentlyContinue
+		if ($DeleteUser) {
 			if ($DeleteUser.displayname -match '\[T]') {
 				Write-Host $DeleteUser.Displayname 'was not deleted'
 			}
 			else {
-				Remove-AzureADUser -ObjectId $user.delete -Force
+				Remove-MsolUser -UserPrincipalName $DeleteUser.UserPrincipalName -Force
 				Write-Host $DeleteUser.DisplayName 'had their account deleted'
 			}
 		}
@@ -24,13 +24,13 @@ foreach ($User in $Users) {
 	}
 
 	if ($User.block) {
-		$BlockUser = Get-AzureADUser -ObjectID $User.block -ErrorAction SilentlyContinue
-		if ($Null -ne $BlockUser) {
-			Set-MsolUser -ObjectID $user.block -BlockCredential $True
+		$BlockUser = Get-MsolUser -UserPrincipalName $User.block -ErrorAction SilentlyContinue
+		if ($BlockUser) {
+			Set-MsolUser -UserPrincipalName $BlockUser.UserPrincipalName -BlockCredential $True
 			Write-Host $BlockUser.Displayname 'had their sign in blocked'
 		}
 		else {
-			Write-Host 'Could not block' $User.block 'was not found' -foregroundcolor "red"
+			Write-Host 'Could not block' $BlockUser '- user was not found' -foregroundcolor "red"
 		}
 	}
 }
