@@ -1,0 +1,44 @@
+#########################################
+#                                       #
+#       Author: Matthew Cantrell        #
+#           Date: March 7, 2022         #
+#           Version 1.0.6               #
+#                                       #
+#########################################
+
+$Inputs = Import-CSV $(Read-Host 'Please drag the input file here') #Import CSV file
+$Groups = foreach ($input in $inputs) {
+    #Populate $Groups variable from Azure via ObjectID
+    if ($input.object) {
+        Get-AzureADGroup -ObjectID $input.Object
+    }
+    #Populates $Groups variable from Azure via Display Name
+    if ($input.DisplayName) {
+        $Filter = $input.DisplayName
+        Get-AzureADGroup -Filter "DisplayName eq '$Filter'"
+    }
+}
+$OwnerResults = foreach ($Group in $Groups) {
+    $gOwners = Get-AzureADGroupOwner -ObjectID $group.ObjectID
+    if ($gOwners) {
+        foreach ($gOwner in $gOwners) {
+            [PSCustomObject]@{ #Export groups that do have owners to array
+                Group             = $Group.DisplayName
+                "Group Object ID" = $Group.ObjectID
+                Owner             = $gOwner.DisplayName
+                "Owner UPN"       = $gOwner.UserPrincipalName
+                "Owner Object ID" = $gOwner.ObjectID
+            }
+        }
+    }
+    else {
+        [PSCustomObject]@{ #Export groups that do have owners to array
+            Group             = $Group.DisplayName
+            "Group Object ID" = $Group.ObjectID
+            Owner             = "No Owner in AAD"
+            "Owner UPN"       = "No Owner in AAD"
+            "Owner Object ID" = "No Owner in AAD"
+        }
+    }
+}
+$OwnerResults | export-csv ./GroupOwners.csv -NoTypeInformation
