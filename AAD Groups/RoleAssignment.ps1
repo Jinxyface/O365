@@ -41,4 +41,28 @@ $OwnerResults = foreach ($Group in $Groups) {
         }
     }
 }
+$MemberResults = foreach ($Group in $Groups) {
+    $gMembers = Get-AzureADGroupMember -ObjectID $group.ObjectID
+    if ($gMembers) {
+        foreach ($gMember in $gMembers) {
+            [PSCustomObject]@{ #Export groups that do have owners to array
+                Group             = $Group.DisplayName
+                "Group Object ID" = $Group.ObjectID
+                Owner             = $gMember.DisplayName
+                "Owner UPN"       = $gMember.UserPrincipalName
+                "Owner Object ID" = $gMember.ObjectID
+            }
+        }
+    }
+    else {
+        [PSCustomObject]@{ #Export groups that do have owners to array
+            Group             = $Group.DisplayName
+            "Group Object ID" = $Group.ObjectID
+            Owner             = "No members in AAD"
+            "Owner UPN"       = "No members in AAD"
+            "Owner Object ID" = "No members in AAD"
+        }
+    }
+}
 $OwnerResults | export-csv ./GroupOwners.csv -NoTypeInformation
+$MemberResults | export-csv ./GroupOwners.csv -NoTypeInformation
