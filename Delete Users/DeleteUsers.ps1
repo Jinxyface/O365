@@ -1,4 +1,13 @@
-﻿$Users = Import-CSV $(read-host 'Please drag and drop the CSV file here')
+﻿#########################################
+#                                       #
+#       Author: Matthew Cantrell        #
+#           Date: March 14, 2022        #
+#           Version 1.0.5               #
+#                                       #
+#########################################
+
+
+$Users = Import-CSV $(read-host 'Please drag and drop the CSV file here')
 
 # CSV has two columns with a header: delete, and block. Takes UPNs
 
