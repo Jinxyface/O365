@@ -46,18 +46,18 @@ $MemberResults = foreach ($Group in $Groups) {
     if ($gMembers) {
         foreach ($gMember in $gMembers) {
             [PSCustomObject]@{ #Export groups that do have members to array
-                Group             = $Group.DisplayName
-                "Group Object ID" = $Group.ObjectID
-                Owner             = $gMember.DisplayName
-                "Owner UPN"       = $gMember.UserPrincipalName
-                "Owner Object ID" = $gMember.ObjectID
+                Group              = $Group.DisplayName
+                "Group Object ID"  = $Group.ObjectID
+                Member             = $gMember.DisplayName
+                "Member UPN"       = $gMember.UserPrincipalName
+                "Member Object ID" = $gMember.ObjectID
             }
         }
     }
     else {
         [PSCustomObject]@{ #Export groups that do have members to array
-            Group             = $Group.DisplayName
-            "Group Object ID" = $Group.ObjectID
+            Group              = $Group.DisplayName
+            "Group Object ID"  = $Group.ObjectID
             Member             = "No members in AAD"
             "Member UPN"       = "No members in AAD"
             "Member Object ID" = "No members in AAD"
