@@ -134,7 +134,7 @@ do {
             $OwnerResults | export-csv ./GroupOwners.csv -NoTypeInformation
             $MemberResults | export-csv ./GroupMembers.csv -NoTypeInformation
         }  'r' {
-            & "..\Main.ps1"
+            & ".\Main.ps1"
         }
         default {
             $Message = "Invalid option, please try again"
