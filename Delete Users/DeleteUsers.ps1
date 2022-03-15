@@ -30,7 +30,7 @@ foreach ($User in $Users) {
 			Write-Host $BlockUser.Displayname 'had their sign in blocked'
 		}
 		else {
-			Write-Host 'Could not block' $BlockUser '- user was not found' -foregroundcolor "red"
+			Write-Host 'Could not block' $User.block '- user was not found' -foregroundcolor "red"
 		}
 	}
 }
