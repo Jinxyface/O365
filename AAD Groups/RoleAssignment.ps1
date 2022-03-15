@@ -79,6 +79,8 @@ do {
             }
             $OwnerResults | export-csv ./GroupOwners.csv -NoTypeInformation
             $MemberResults | export-csv ./GroupMembers.csv -NoTypeInformation
+            $Message = "Task completed"
+            $Color = "green"
         }
         '2' {
             $Inputs = Import-CSV $(Read-Host 'Please drag the input file here') #Import CSV file
@@ -141,6 +143,8 @@ do {
             }
             $OwnerResults | export-csv ./GroupOwners.csv -NoTypeInformation
             $MemberResults | export-csv ./GroupMembers.csv -NoTypeInformation
+            $Message = "Task completed"
+            $Color = "green"
         }  'r' {
             & ".\Main.ps1"
         }
