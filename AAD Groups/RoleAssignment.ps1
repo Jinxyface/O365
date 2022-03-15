@@ -1,3 +1,11 @@
+#########################################
+#                                       #
+#       Author: Matthew Cantrell        #
+#           Date: March 14, 2022        #
+#           Version 1.0.5               #
+#                                       #
+#########################################
+
 function Show-Menu {
     param (
         [string]$Title = 'Enterprise App Users'
