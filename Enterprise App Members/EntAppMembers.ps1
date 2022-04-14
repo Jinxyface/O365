@@ -6,6 +6,8 @@
 #                                       #
 #########################################
 
+#Input file is one column and takes Object IDs of enterprise apps from Azure
+
 try {
     Get-AzureADTenantDetail
 }
