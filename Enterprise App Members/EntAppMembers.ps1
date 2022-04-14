@@ -77,7 +77,7 @@ do {
             $Color = "green"
             Break
         }  'r' {
-            & ".\Controller.ps1"
+            & "..\Main.ps1"
         }
         default {
             $Message = "Invalid option, please try again"
