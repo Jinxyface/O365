@@ -32,7 +32,7 @@ function Get-AppMembers([Object]$ObjectID) {
             get-azureaduser -ObjectID $Result.principalID
         }
         if ($Result.principaltype -eq 'group') {
-            Get-AzureADGroupMember -ObjectID $Result.principalID       
+            Get-AzureADGroupMember -ObjectID $Result.principalID -All $true
         }
     }
     $Members | foreach-object {
