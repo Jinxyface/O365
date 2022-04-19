@@ -62,7 +62,7 @@ do {
         '1' {
             $Group = Read-Host -Prompt "Please input the Object ID of Enterprise App"
             $Output = Get-AppMembers($Group)
-            $Output | export-csv ./Output.csv -NoTypeInformation
+            $Output | export-csv ./"EntAppMembersOutput_$((Get-Date).ToString("yyyyMMdd_HHmmss")).csv" -NoTypeInformation
             $Message = "Task completed"
             $Color = "green"
             Break
@@ -72,7 +72,7 @@ do {
             $Output = foreach ($Group in $Groups) {
                 Get-AppMembers($Group.group)
             }
-            $Output | export-csv ./EntAppMembersOutput.csv -NoTypeInformation
+            $Output | export-csv ./"EntAppMembersOutput_$((Get-Date).ToString("yyyyMMdd_HHmmss")).csv" -NoTypeInformation
             $Message = "Task completed"
             $Color = "green"
             Break
