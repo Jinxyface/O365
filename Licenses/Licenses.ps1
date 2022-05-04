@@ -8,6 +8,7 @@
 
 #input file has one header called "user" that accepts UPNs
 
+Connect-MsolService
 function Show-Menu {
     param (
         [string]$Title = 'Licenses'

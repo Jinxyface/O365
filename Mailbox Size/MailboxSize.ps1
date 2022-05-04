@@ -6,6 +6,7 @@
 #                                       #
 #########################################
 
+Connect-ExchangeOnline
 function Show-Menu {
     param (
         [string]$Title = 'Mailbox Size'

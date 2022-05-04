@@ -8,13 +8,7 @@
 
 #Input file is one column and takes Object IDs of enterprise apps from Azure
 
-try {
-    Get-AzureADTenantDetail
-}
-catch [Microsoft.Open.Azure.AD.CommonLibrary.AadNeedAuthenticationException] {
-    Write-Host "You're not connected, please sign in."
-    Connect-AzureAD
-}
+Connect-AzureAD
 function Show-Menu {
     param (
         [string]$Title = 'Enterprise App Users'

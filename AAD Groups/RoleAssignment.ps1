@@ -7,7 +7,7 @@
 #########################################
 
 #Input CSV has two headers, one for group names, and one for objectIDs
-
+Connect-AzureAD
 function Show-Menu {
     param (
         [string]$Title = 'Role Assignment'

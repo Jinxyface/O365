@@ -5,7 +5,7 @@
 #           Version 1.0.0               #
 #                                       #
 #########################################
-
+Connect-MsolService
 function Show-Menu {
 	param (
 		[string]$Title = 'Groups'

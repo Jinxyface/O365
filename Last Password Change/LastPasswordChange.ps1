@@ -7,7 +7,7 @@
 #########################################
 
 #Input CSV for option 2 has one column that accepts UPNs
-
+Connect-MsolService
 function Show-Menu {
     param (
         [string]$Title = 'Last Password Change Date'
