@@ -6,8 +6,27 @@
 #                                       #
 #########################################
 
-
-$Users = Import-CSV $(read-host 'Please drag and drop the CSV file here')
+function Show-Menu {
+    param (
+        [string]$Title = 'Delete Users'
+    )
+    Clear-Host
+    Write-Host "================ $Title ================"
+    
+    Write-Host "Press '1' to delete/block users"
+    Write-Host "Press 'r' to return to main menu"
+}
+do {
+    Show-Menu
+    if ($Message) {
+        Write-Host "========================" -ForegroundColor $Color
+        Write-Host $Message -ForegroundColor $Color
+        Write-Host "========================" -ForegroundColor $Color
+    }
+    $Selection = Read-Host "Please make a selection"
+    switch ($Selection) {
+        '1' {
+			$Users = Import-CSV $(read-host 'Please drag and drop the CSV file here')
 
 # CSV has two columns with a header: delete, and block. Takes UPNs
 
@@ -43,3 +62,13 @@ foreach ($User in $Users) {
 		}
 	}
 }
+		} 'r' {
+            & "..\Main.ps1"
+        }
+        default {
+            $Message = "Invalid option, please try again"
+            $Color = "red"
+        }
+    }
+}
+until ($Selection -eq 'r')

@@ -10,7 +10,7 @@
 
 function Show-Menu {
     param (
-        [string]$Title = 'Enterprise App Users'
+        [string]$Title = 'Role Assignment'
     )
     Clear-Host
     Write-Host "================ $Title ================"
@@ -148,7 +148,7 @@ do {
             $Message = "Task completed"
             $Color = "green"
         }  'r' {
-            & ".\Main.ps1"
+            & "..\Main.ps1"
         }
         default {
             $Message = "Invalid option, please try again"
