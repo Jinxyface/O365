@@ -5,9 +5,10 @@
 #           Version 1.0.1               #
 #                                       #
 #########################################
+
 Connect-ExchangeOnline
-$Users = Import-CSV $(Read-Host 'Please drag USERS file here') #Import CSV of Users
-$Mailboxes = Import-CSV $(Read-Host 'Please drag MAILBOXES file here') #Import CSV of Mailboxes
+$Users = Import-CSV $(Read-Host 'Please drag USERS file here') #Import CSV of Users via upn
+$Mailboxes = Import-CSV $(Read-Host 'Please drag MAILBOXES file here') #Import CSV of Mailboxes via upn
 foreach ($user in $users) {
     #Add each user to every mailbox
     foreach ($Mailbox in $Mailboxes) {

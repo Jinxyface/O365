@@ -6,6 +6,8 @@
 #                                       #
 #########################################
 
+#Input CSV has two headers, one for group names, and one for objectIDs
+
 function Show-Menu {
     param (
         [string]$Title = 'Enterprise App Users'

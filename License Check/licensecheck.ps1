@@ -1,3 +1,13 @@
+#########################################
+#                                       #
+#       Author: Matthew Cantrell        #
+#           Date: March 24, 2022        #
+#           Version 1.0.0               #
+#                                       #
+#########################################
+
+#input file has one header by the name of "user" that takes UPNs
+
 $users = import-csv -Path "C:\Users\Matthew\Documents\Powershell\License Check\users.csv"
 
 $Sku = @{

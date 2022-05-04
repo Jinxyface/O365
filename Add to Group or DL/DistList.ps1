@@ -6,7 +6,9 @@
 #                                       #
 #########################################
 
-$Users = Import-CSV ./DistUsers.csv
+#Input CSV has one header called "upn"
+
+$Users = Import-CSV ./Members.csv
 $Group = Get-DistributionGroup -Identity $(Read-Host "Please type the SMTP address of the distribution group")
 foreach($user in $users){
     $DistUsers = Get-Mailbox -Identity $user.user
