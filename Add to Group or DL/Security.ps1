@@ -1,4 +1,4 @@
-Import-CSV -path "C:\Users\Matthew\Documents\Powershell\Add to Group or DL\members.csv" | ForEach-Object {
+Import-CSV -path "C:\Users\Matthew\Documents\O365\Add to Group or DL\members.csv" | ForEach-Object {
 
 	$UPN = $_.UserPrincipalName
 	$Users = Get-MsolUser -UserPrincipalName $UPN
