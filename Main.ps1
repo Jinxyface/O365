@@ -21,6 +21,7 @@ function Show-Menu {
     Write-Host "Press '6' to query last password change"
     Write-Host "Press '7' to manage account licenses"
     Write-Host "Press '8' to query mailbox size"
+    Write-Host "Press '9' to export a list of mailboxes on litigation hold"
     Write-Host "Press 'q' to quit"
 }
 do {
@@ -48,6 +49,8 @@ do {
             & '.\Licenses\Licenses.ps1'
         } '8' {
             & '.\Mailbox Size\MailboxSize.ps1'
+        } '9' {
+            & '.\Litigation Hold Export\LitHold.ps1'
         } 'q' {
             return
             break
