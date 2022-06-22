@@ -6,6 +6,8 @@
 #                                       #
 #########################################
 Connect-MsolService
+Connect-ExchangeOnline
+
 function Show-Menu {
     param (
         [string]$Title = 'Delete Users'
@@ -37,9 +39,13 @@ if (!$Users) {
 foreach ($User in $Users) {
 	if ($user.delete) {
 		$DeleteUser = Get-MsolUser -UserPrincipalName $User.delete -ErrorAction SilentlyContinue
+		$LitigationMailbox = Get-Mailbox -Identity $user.delete | where LitigationHoldEnabled -eq 'true'
 		if ($DeleteUser) {
 			if ($DeleteUser.displayname -match '\[T]') {
-				Write-Host $DeleteUser.Displayname 'was not deleted'
+				Write-Host $DeleteUser.Displayname 'was not deleted, as their display name matches a pattern to skip'
+			}
+			if ($LitigationMailbox){
+				White-Host $LitigationMailbox 'was not deleted, as they are on litigation hold'
 			}
 			else {
 				Remove-MsolUser -UserPrincipalName $DeleteUser.UserPrincipalName -Force
