@@ -35,7 +35,7 @@ do {
 			foreach ($user in $users) {
 				$DistUsers = Get-Mailbox -Identity $user.user
 				foreach ($DistUser in $DistUsers) {
-					Add-DistributionGroupMember -Identity $Group.PrimarySMTPAddress -Member $DistUser.Alias
+					Add-DistributionGroupMember -Identity $Group.PrimarySMTPAddress -Member $DistUser.PrimarySMTPAddress
 				}
 			}
 		} '2' {
