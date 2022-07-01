@@ -6,6 +6,7 @@
 #                                       #
 #########################################
 Connect-MsolService
+Connect-ExchangeOnline
 function Show-Menu {
 	param (
 		[string]$Title = 'Groups'
