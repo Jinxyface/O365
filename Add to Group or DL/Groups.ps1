@@ -7,7 +7,7 @@
 #########################################
 Connect-MsolService
 Connect-ExchangeOnline
-Start-Transcript
+Start-Transcript -OutputDirectory ./
 function Show-Menu {
 	param (
 		[string]$Title = 'Groups'
