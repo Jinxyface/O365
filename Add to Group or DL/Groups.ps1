@@ -51,7 +51,7 @@ do {
 			Import-CSV $(Read-Host 'Please drag the input file here') | ForEach-Object {
 			$UPN = $_.UserPrincipalName
 			$Users = Get-MsolUser -UserPrincipalName $UPN
-			$GroupID = Get-MsolGroup -ObjectId #<ObjectID>
+			$GroupID = Get-MsolGroup -ObjectId $(Read-Host "Please paste the ObjectID of the group")
 			$Users | ForEach-Object { Add-MsolGroupMember -GroupObjectId $GroupID.ObjectID -GroupMemberObjectId $Users.ObjectID -GroupMemberType User
 			}
 		}
